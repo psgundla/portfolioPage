@@ -338,7 +338,7 @@ footer .cite-self .lbl{ color: var(--ink-mute); }
     <div class="abstract" id="abstract">
       <h2>Abstract</h2>
       <p>Diffuse gliomas carry molecular fingerprints — <i>IDH</i> mutation, 1p/19q codeletion, <i>CDKN2A</i> loss — that determine prognosis, yet routine diagnosis still hinges on morphology already encoded in the histopathology slide. This work asks whether vision can recover the genotype directly from the whole-slide image. I develop weakly-supervised, attention-based deep-learning models trained on the largest publicly available glioma WSI cohort (≈5,000 slides), pairing vision transformers with interpretable attention as explanation and cross-cohort validation as the bar for clinical credibility. The document that follows traces the path — mathematics and electronics in Hyderabad, bioinformatics on the coast of Manipal, deep learning in the Alps of Grenoble, and a PhD at Essen — from first principles to a pipeline that earns its way toward the clinic.</p>
-      <p class="keywords"><b>Keywords:</b> computational pathology · vision transformers · attention-based multiple-instance learning · whole-slide imaging · glioma genomics · multimodal OMICS · cancer ecotypes · foundation models · interpretable AI · reproducible pipelines</p>
+      <p class="keywords"><b>Keywords:</b> computational pathology · vision transformers · attention-based multiple-instance learning · whole-slide imaging · glioma genomics · tumor microenvironment · spatial omics · cancer ecotypes · foundation models · interpretable AI · reproducible pipelines</p>
     </div>
 
     <!-- LEFT COLUMN -->
@@ -469,6 +469,37 @@ footer .cite-self .lbl{ color: var(--ink-mute); }
     </div>
   </div>
 
+  <!-- Discussion full width -->
+  <section id="discussion" class="wrap" style="padding:0;">
+    <h2 class="head"><span class="no">D</span> Discussion</h2>
+    <p>I was reading a Microsoft Research blog in 2015. They were talking about DNA as storage—trillions of bits in a molecule the size of a grain of sand. <i>Could we use biology as infinite hard drives?</i> That thought planted something: signals hide everywhere. You just need to listen.</p>
+    <p>In Hyderabad, I was studying circuits. But my mind was elsewhere.</p>
+    <p>My first real experiment was mice. Behavioral studies, digital signal processing, learning in fear conditioning. I was pinning back to electronics—circuits, signals, noise—but now the system was alive. Scared mice have patterns. Frightened mice have different patterns. <i>What if I could read that?</i> What if biology spoke in frequencies I could decode?</p>
+    <p>That curiosity got me a scholarship. IDEX + Mérieux. Grenoble in 2019 was my first time living outside India. First time doing research at scale. My thesis was on lung adenocarcinoma transcriptomics (NSCLADC study). I remember the moment I saw the data—how TP53 activity carved the tumor landscape. That's when I knew: <i>this is the question. Not storage. Not abstractions. Real biology. Real stakes.</i></p>
+    <p>COVID hit. Back to India. I took an internship at Himalaya (cloud infrastructure, data pipelines) for a month. Then Plantik: two years building algorithms for disease-resistant plants, maintaining AWS/GCP pipelines, analyzing genomics. It was <i>work</i>—not research yet. But I learned: how to move code between institutions, how infrastructure breaks silently, how real data is messier than papers ever admit.</p>
+    <p>In parallel, I did a year at Mbiomics studying ESCC—esophageal cancer. Two papers. First taste of real science: hypothesis, failure, refinement. That's when I applied for the PhD.</p>
+    <p>2023. Essen. Emre's lab. I was the first student. No playbook. We were building from scratch: vision transformers on whole-slide images, asking <i>can we predict glioma genotype from morphology alone?</i> The answer was harder than I expected. Attention heatmaps didn't work cleanly. Cross-cohort validation broke. But that's where rigor matters. That's where the electronics lesson holds: <i>if it breaks silently, you miss it. Make it fail loud.</i></p>
+    <p>ESMO Merit Award felt surreal. Not because the model is revolutionary—it's not. But because it's <i>honest</i>. Because I built it to fail transparently.</p>
+    <p>Now I'm asking the next question: can we see the tumor microenvironment—the immune cells, the stromal architecture—in spatial omics? Can foundation models trained on morphology + genomics + outcomes unlock what tissue is <i>really</i> saying? That's the next chapter.</p>
+    <p>But here's the thing: I don't know if I'll solve it. I'm building toward postdoc, toward continuing science after the PhD. I read papers obsessively, I learn JavaScript for fun (building tools matters), I listen to music 6+ hours a day (it keeps me sane). I've traveled from India to France to Switzerland to Germany and Spain. Each place taught me something. Each place made me smaller and bigger at once.</p>
+    <p>The photo collage says it: <i>I might not be where I want to be yet. But I get closer every day.</i> I don't know what's next. But I'm strapped in to learn it.</p>
+    <p style="margin-top: 20px;"><b>Building a lab demands clarity—but not blindness to opportunity.</b> My research appetite is specific: vision transformers + large language models as foundation models for computational pathology. I'm deep in gliomas now, and I want to go deeper.</p>
+    <p>The questions that keep me awake: <i>Why do some gliomas thrive in hypoxia while others don't?</i> The morphology encodes that—the stromal architecture, immune infiltration, necrosis patterns—but we're not reading it yet. Spatial omics + interpretable vision models could unlock it. <i>What does CDKN2A/B deletion actually do to the tumor microenvironment?</i> It's a genetic driver, but the phenotype is written in tissue. If I could map niche-level changes across genomic backgrounds, I could move beyond "this mutation matters" to "here's how it sculpts the ecosystem."</p>
+    <p>That's the postdoc work. That's the specific hunger that will drive the next three years. I'm open to where a position takes me—but I'm not empty. I want a lab that values interpretability, mentors rigorously, and asks: <i>Can we see what tissue is really saying?</i></p>
+    <p>The problem will sharpen during postdoc. The approach is already clear.</p>
+  </section>
+
+  <!-- Results full width -->
+  <section id="results-narrative" class="wrap" style="padding:0;">
+    <h2 class="head"><span class="no">R</span> Results: Publications &amp; Key Achievements</h2>
+    <p>The first door opened in esophageal cancer. At Mbiomics, I asked: <i>what do gene expression signatures tell us about ESCC subtypes?</i> The data showed divergence—population-specific transcriptomes carved distinct molecular landscapes. One pattern stood out: Desmoglein-1, a cell adhesion protein, was systematically downregulated in ESCC tumors. That finding anchored two peer-reviewed publications (Infectious Agents &amp; Cancer, Cancer Biomarkers, 2023). Small work, but real—proof that messy data yields signal if you listen carefully.</p>
+    <p>But ESCC was a stepping stone. The real question emerged in Essen: <i>can we read the genotype directly from morphology?</i></p>
+    <p>Diffuse gliomas carry molecular fingerprints—<i>IDH</i> mutation, 1p/19q codeletion, <i>CDKN2A</i> loss—that determine prognosis, yet routine diagnosis still hinges on morphology already encoded in the histopathology slide. I built a vision transformer trained on ~5,000 whole-slide images from the largest publicly available glioma cohort. The model learned to predict genetic subtype from H&amp;E alone, with attention heatmaps that a pathologist can audit. Cross-cohort validation held—the work generalized.</p>
+    <p>That became my first-author paper: <i>"Genetic Subtype Prediction in Diffuse Gliomas via a Vision Transformer-Based Multiple Instance Learning Model"</i> (ESMO RWD, in review). Same work, refined as a poster, earned the ESMO Merit Award at the 1st ESMO AI Congress (2025). Recognition—but more importantly, proof that attention-based MIL is not black magic. It's interpretable. It holds up.</p>
+    <p>In parallel, I contributed to a larger study: <i>"Tumor-initiating genetics and therapy drive divergent molecular evolution in IDH-mutant gliomas"</i>. My role: help build the data analysis, validate the hypothesis.</p>
+    <p>This body of work—five publications, two first-author, one ESMO-recognized—tells a single story: signal is everywhere. You just have to refuse to hide it.</p>
+  </section>
+
   <!-- References full width -->
   <section id="references" class="wrap" style="padding:0;">
     <h2 class="head"><span class="no">7</span> References — Selected Publications</h2>
@@ -482,13 +513,20 @@ footer .cite-self .lbl{ color: var(--ink-mute); }
   </section>
 
   <footer id="contact">
+    <p style="max-width: var(--measure); margin-bottom: 20px;">I might not be where I want to be yet. But I get closer every day. This work is an invitation—to collaborate, to push on the questions that matter, to build tools that survive contact with reality. If you're interested in computational pathology, vision transformers, tumor microenvironment mapping, or just curious about how someone from first principles in Hyderabad ended up asking gliomas to reveal their secrets: let's talk.</p>
     <div class="frow">
-      <span>Correspondence · <a href="mailto:contact@psgundla.com">contact@psgundla.com</a></span>
-      <span>North-Rhine Westphalia, DE</span>
+      <span>✉ <a href="mailto:contact@psgundla.com">contact@psgundla.com</a></span>
+      <span>🔗 <a href="https://linkedin.com/in/psgundla" target="_blank" rel="noopener">LinkedIn</a></span>
+      <span>📚 <a href="https://scholar.google.com/citations?user=pranav-swaroop-gundla" target="_blank" rel="noopener">Google Scholar</a></span>
+      <span>🔬 <a href="https://researchgate.net/profile/Pranav-Swaroop-Gundla" target="_blank" rel="noopener">ResearchGate</a></span>
     </div>
     <div class="frow" style="margin-top:8px;">
-      <span>EACR 36044 · SNO 757239</span>
-      <span><a href="https://psgundla.com" target="_blank" rel="noopener">psgundla.com</a> · <a href="https://github.com/psgundla" target="_blank" rel="noopener">github.com/psgundla</a></span>
+      <span>💻 <a href="https://github.com/psgundla" target="_blank" rel="noopener">GitHub</a></span>
+      <span>𝕏 <a href="https://x.com/psgundla" target="_blank" rel="noopener">X (Twitter)</a></span>
+      <span style="color: var(--ink-mute);">Postdoc applications open July 2027. Looking for labs focused on vision + spatial omics in cancer.</span>
+    </div>
+    <div class="frow" style="margin-top:16px;">
+      <span style="font-size: 12px; color: var(--ink-mute);">EACR 36044 · SNO 757239</span>
     </div>
     <pre class="cite-self"><span class="lbl">@phdthesis</span>{gundla2026slide,
   author = {Gundla, Pranav Swaroop},
