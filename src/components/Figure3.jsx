@@ -7,9 +7,9 @@ export default function Figure3() {
   ];
 
   const awards = [
-    { year: 2019, title: 'IDEX & Mérieux Scholarship', where: 'Grenoble', x: 100 },
-    { year: 2020, title: 'Hackathon 1st Place', where: 'Bordeaux', x: 280 },
-    { year: 2025, title: 'ESMO Merit Award', where: 'ESMO AI', x: 460 }
+    { year: 2019, title: 'IDEX & Mérieux Scholarship', where: 'Grenoble', x: 620 },
+    { year: 2020, title: 'Hackathon 1st Place', where: 'Bordeaux', x: 770 },
+    { year: 2025, title: 'ESMO Merit Award', where: 'ESMO AI', x: 920 }
   ];
 
   return (
@@ -52,12 +52,12 @@ export default function Figure3() {
           })}
 
           {/* RIGHT SIDE: Awards timeline */}
-          <text x="550" y="25" fontSize="12" fontWeight="600" fill="var(--ink)">
+          <text x="620" y="25" fontSize="12" fontWeight="600" fill="var(--ink)">
             Recognition Timeline
           </text>
 
           {/* Timeline line */}
-          <line x1="500" y1="130" x2="880" y2="130" stroke="var(--rule)" strokeWidth="2" />
+          <line x1="550" y1="130" x2="950" y2="130" stroke="var(--rule)" strokeWidth="2" />
 
           {awards.map((award, idx) => {
             const x = award.x;
@@ -92,7 +92,7 @@ export default function Figure3() {
           })}
 
           {/* Legend */}
-          <text x="30" y="300" fontSize="10" fill="var(--ink-mute)">
+          <text x="30" y="330" fontSize="10" fill="var(--ink-mute)">
             Profile: Expert in vision/ML pipelines. Intermediate infrastructure & OMICS. Active in research community (2 mentor students, journal clubs, workshops, conferences).
           </text>
         </svg>
