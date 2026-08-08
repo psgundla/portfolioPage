@@ -6,6 +6,7 @@ import Discussion from './components/Discussion';
 import Results from './components/Results';
 import Contact from './components/Contact';
 import Figure1 from './components/Figure1';
+import Figure2 from './components/Figure2';
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -247,7 +248,14 @@ function App() {
 
             <section id="results">
               <h2 className={styles.head}>
-                <span className={styles.no}>5</span> By the Numbers
+                <span className={styles.no}>5</span> Experience Pipeline
+              </h2>
+              <Figure2 />
+            </section>
+
+            <section id="metrics">
+              <h2 className={styles.head}>
+                <span className={styles.no}>6</span> By the Numbers
               </h2>
               <div className={styles.metrics} role="group" aria-label="Key metrics">
                 <div className={styles.m}>
@@ -271,7 +279,7 @@ function App() {
 
             <section id="skills">
               <h2 className={styles.head}>
-                <span className={styles.no}>6</span> Methods &amp; Materials
+                <span className={styles.no}>7</span> Methods &amp; Materials
               </h2>
               <dl className={styles.kv}>
                 <dt>Vision / ML</dt>
