@@ -697,3 +697,83 @@ footer .cite-self {
 footer .cite-self .lbl {
   color: var(--ink-mute);
 }
+
+/* Hamburger button (mobile) */
+.hamburgerBtn {
+  display: none;
+  appearance: none;
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.hamburgerBtn:hover {
+  border-color: var(--ink-mute);
+  color: var(--ink);
+}
+
+.themeMobile {
+  display: none;
+  appearance: none;
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.themeMobile:hover {
+  border-color: var(--ink-mute);
+  color: var(--ink);
+}
+
+.mobileMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 30;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+.mobileMenu a {
+  padding: 8px 12px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+.mobileMenu a:hover {
+  background: var(--tag);
+  color: var(--ink);
+}
+
+/* Mobile hamburger menu */
+@media (max-width: 768px) {
+  .navMenu {
+    display: none !important;
+  }
+
+  .hamburgerBtn {
+    display: block !important;
+  }
+
+  .themeMobile {
+    display: block !important;
+  }
+}

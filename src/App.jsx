@@ -15,6 +15,8 @@ function App() {
     }
   });
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
     const root = document.documentElement;
     if (theme === 'system') {
@@ -42,16 +44,41 @@ function App() {
         <span className={styles.id}>
           arXiv:<b>2607.17</b>&nbsp;[cs.CV]&nbsp;·&nbsp;cv.v3
         </span>
-        <nav aria-label="Sections">
-          <a href="#abstract">Abstract</a>
-          <a href="#intro">Intro</a>
-          <a href="#experience">Experience</a>
-          <a href="#references">Refs</a>
-          <a href="#contact">Contact</a>
-          <button className={styles.theme} onClick={toggleTheme} aria-label="Toggle color theme">
-            ◑ theme
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <button
+            className={styles.hamburgerBtn}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle navigation menu"
+          >
+            ☰
           </button>
-        </nav>
+          <nav aria-label="Sections" className={styles.navMenu}>
+            <a href="#abstract">Abstract</a>
+            <a href="#intro">Intro</a>
+            <a href="#experience">Experience</a>
+            <a href="#references">Refs</a>
+            <a href="#contact">Contact</a>
+            <button className={styles.theme} onClick={toggleTheme} aria-label="Toggle color theme">
+              ◑ theme
+            </button>
+          </nav>
+          <button
+            className={styles.themeMobile}
+            onClick={toggleTheme}
+            aria-label="Toggle color theme"
+          >
+            ◑
+          </button>
+        </div>
+        {menuOpen && (
+          <nav className={styles.mobileMenu}>
+            <a href="#abstract" onClick={() => setMenuOpen(false)}>Abstract</a>
+            <a href="#intro" onClick={() => setMenuOpen(false)}>Intro</a>
+            <a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a>
+            <a href="#references" onClick={() => setMenuOpen(false)}>Refs</a>
+            <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+          </nav>
+        )}
       </div>
 
       <main id="main" className={styles.wrap}>
