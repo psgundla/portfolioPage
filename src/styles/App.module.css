@@ -472,6 +472,8 @@ figcaption {
   margin-top: 10px;
   line-height: 1.5;
   max-width: var(--measure);
+  text-align: justify;
+  text-justify: auto;
 }
 
 figcaption b {
