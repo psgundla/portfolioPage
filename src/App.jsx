@@ -173,6 +173,38 @@ function App() {
                 <p>First principles across three disciplines. Tutored matriculation students; ran a two-week Arduino / IoT workshop for ~40 participants.</p>
               </div>
             </section>
+
+            <section id="awards">
+              <h2 className={styles.head}>
+                <span className={styles.no}>A</span> Awards &amp; Honours
+              </h2>
+              <div className={styles.entry}>
+                <div className={styles.row}>
+                  <h3>ESMO Merit Award</h3>
+                  <span className={styles.when}>2025</span>
+                </div>
+                <div className={styles.org}>1st ESMO AI Congress (ESMO AI 2025)</div>
+                <p>
+                  For the poster <i>Genetic subtype prediction in diffuse gliomas using a vision-transformer-based model</i> (FPN
+                  278P) — foundation models and attention-based MIL decoding molecular subtype from H&amp;E whole-slide images.
+                  Mentors: Emre Kocakavuk, Christian Reinhardt.
+                </p>
+              </div>
+              <div className={styles.entry}>
+                <div className={styles.row}>
+                  <h3>1st place — Hackathon</h3>
+                  <span className={styles.when}>2020</span>
+                </div>
+                <div className={styles.org}>Congrès National des Pharmaciens, Bordeaux</div>
+              </div>
+              <div className={styles.entry}>
+                <div className={styles.row}>
+                  <h3>IDEX &amp; UGA Foundation Scholarship</h3>
+                  <span className={styles.when}>2019</span>
+                </div>
+                <div className={styles.org}>Université Grenoble Alpes · M2 programme</div>
+              </div>
+            </section>
           </div>
 
           {/* RIGHT COLUMN */}
@@ -212,38 +244,6 @@ function App() {
                   <li>Population-specific transcriptomes in ESCC (Infectious Agents &amp; Cancer, 2023).</li>
                   <li>Downregulation of Desmoglein 1 in ESCC (Cancer Biomarkers, 2023).</li>
                 </ul>
-              </div>
-            </section>
-
-            <section id="awards">
-              <h2 className={styles.head}>
-                <span className={styles.no}>A</span> Awards &amp; Honours
-              </h2>
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>ESMO Merit Award</h3>
-                  <span className={styles.when}>2025</span>
-                </div>
-                <div className={styles.org}>1st ESMO AI Congress (ESMO AI 2025)</div>
-                <p>
-                  For the poster <i>Genetic subtype prediction in diffuse gliomas using a vision-transformer-based model</i> (FPN
-                  278P) — foundation models and attention-based MIL decoding molecular subtype from H&amp;E whole-slide images.
-                  Mentors: Emre Kocakavuk, Christian Reinhardt.
-                </p>
-              </div>
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>1st place — Hackathon</h3>
-                  <span className={styles.when}>2020</span>
-                </div>
-                <div className={styles.org}>Congrès National des Pharmaciens, Bordeaux</div>
-              </div>
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>IDEX &amp; UGA Foundation Scholarship</h3>
-                  <span className={styles.when}>2019</span>
-                </div>
-                <div className={styles.org}>Université Grenoble Alpes · M2 programme</div>
               </div>
             </section>
 
@@ -311,14 +311,10 @@ function App() {
           </div>
         </div>
 
-        {/* DISCUSSION & RESULTS in 2-column layout */}
-        <div className={styles.cols} style={{ gridColumn: '1 / -1' }}>
-          <div className={styles.col}>
-            <Discussion />
-          </div>
-          <div className={styles.col}>
-            <Results />
-          </div>
+        {/* DISCUSSION & RESULTS — balanced multi-column flow (fills evenly) */}
+        <div className={styles.flow}>
+          <Discussion />
+          <Results />
         </div>
 
         {/* REFERENCES full width */}

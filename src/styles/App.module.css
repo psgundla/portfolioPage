@@ -348,6 +348,35 @@ a:focus-visible, button:focus-visible {
   }
 }
 
+/* Balanced multi-column flow for long narrative sections.
+   Text fills both columns evenly — no height-mismatch gaps. */
+.flow {
+  column-count: 2;
+  column-gap: clamp(28px, 4vw, 56px);
+  column-fill: balance;
+  padding: 40px 0 20px;
+}
+
+.flow > section {
+  margin: 0 0 22px;
+}
+
+.flow p {
+  max-width: none;
+}
+
+.flow .head,
+.flow figure {
+  break-inside: avoid;
+}
+
+@media (max-width: 860px) {
+  .flow {
+    column-count: 1;
+    padding: 20px 0 10px;
+  }
+}
+
 section {
   margin: 0 0 34px;
   scroll-margin-top: 64px;
@@ -545,6 +574,14 @@ figcaption b {
 /* References */
 .refs {
   counter-reset: ref;
+  column-count: 2;
+  column-gap: clamp(28px, 4vw, 56px);
+}
+
+@media (max-width: 860px) {
+  .refs {
+    column-count: 1;
+  }
 }
 
 .ref {
@@ -555,7 +592,7 @@ figcaption b {
   font-size: 14px;
   padding: 9px 0;
   border-bottom: 1px solid var(--rule-soft);
-  max-width: var(--measure);
+  break-inside: avoid;
 }
 
 .ref:last-child {
@@ -674,9 +711,42 @@ footer {
   color: var(--ink-soft);
 }
 
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .footerGrid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
+
+.footerGrid .bibtex {
+  margin: 0;
+  padding: 16px 18px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--tag);
+  background: color-mix(in srgb, var(--tag) 40%, transparent);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.footerGrid .bibtex .lbl {
+  color: var(--ink-mute);
+}
+
 footer .frow {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 20px;
   flex-wrap: wrap;
   font-family: var(--mono);
