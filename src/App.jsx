@@ -177,35 +177,40 @@ function App() {
               </div>
             </section>
 
-            <section id="awards">
+            <section id="training">
               <h2 className={styles.head}>
-                <span className={styles.no}>A</span> Awards &amp; Honours
+                <span className={styles.no}>C</span> Training &amp; Certifications
               </h2>
+
               <div className={styles.entry}>
                 <div className={styles.row}>
-                  <h3>ESMO Merit Award</h3>
-                  <span className={styles.when}>2025</span>
-                </div>
-                <div className={styles.org}>1st ESMO AI Congress (ESMO AI 2025)</div>
-                <p>
-                  For the poster <i>Genetic subtype prediction in diffuse gliomas using a vision-transformer-based model</i> (FPN
-                  278P) — foundation models and attention-based MIL decoding molecular subtype from H&amp;E whole-slide images.
-                  Mentors: Emre Kocakavuk, Christian Reinhardt.
-                </p>
-              </div>
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>1st place — Hackathon</h3>
+                  <h3>Precision Oncology — Summer School</h3>
                   <span className={styles.when}>2020</span>
                 </div>
-                <div className={styles.org}>Congrès National des Pharmaciens, Bordeaux</div>
+                <div className={styles.org}>ESI Archamps, FR</div>
               </div>
+
               <div className={styles.entry}>
                 <div className={styles.row}>
-                  <h3>IDEX &amp; UGA Foundation Scholarship</h3>
+                  <h3>Biohealth Computing — Summer School</h3>
                   <span className={styles.when}>2019</span>
                 </div>
-                <div className={styles.org}>Université Grenoble Alpes · M2 programme</div>
+                <div className={styles.org}>ESI Archamps, FR</div>
+              </div>
+
+              <div className={styles.entry}>
+                <div className={styles.row}>
+                  <h3>Certifications</h3>
+                  <span className={styles.when}>online</span>
+                </div>
+                <div className={styles.org}>Coursera · JuliaAcademy</div>
+                <ul>
+                  <li>Algorithms for DNA Sequencing — Johns Hopkins</li>
+                  <li>Supervised Machine Learning: Regression &amp; Classification — DeepLearning.AI / Stanford</li>
+                  <li>Command Line Tools for Genomic Data Science — Johns Hopkins</li>
+                  <li>Python for Data Science &amp; AI — IBM</li>
+                  <li>Introduction to Julia (for Programmers) — JuliaAcademy</li>
+                </ul>
               </div>
             </section>
           </div>
@@ -281,6 +286,38 @@ function App() {
               </div>
             </section>
 
+            <section id="awards">
+              <h2 className={styles.head}>
+                <span className={styles.no}>A</span> Awards &amp; Honours
+              </h2>
+              <div className={styles.entry}>
+                <div className={styles.row}>
+                  <h3>ESMO Merit Award</h3>
+                  <span className={styles.when}>2025</span>
+                </div>
+                <div className={styles.org}>1st ESMO AI Congress (ESMO AI 2025)</div>
+                <p>
+                  For the poster <i>Genetic subtype prediction in diffuse gliomas using a vision-transformer-based model</i> (FPN
+                  278P) — foundation models and attention-based MIL decoding molecular subtype from H&amp;E whole-slide images.
+                  Mentors: Emre Kocakavuk, Christian Reinhardt.
+                </p>
+              </div>
+              <div className={styles.entry}>
+                <div className={styles.row}>
+                  <h3>1st place — Hackathon</h3>
+                  <span className={styles.when}>2020</span>
+                </div>
+                <div className={styles.org}>Congrès National des Pharmaciens, Bordeaux</div>
+              </div>
+              <div className={styles.entry}>
+                <div className={styles.row}>
+                  <h3>IDEX &amp; UGA Foundation Scholarship</h3>
+                  <span className={styles.when}>2019</span>
+                </div>
+                <div className={styles.org}>Université Grenoble Alpes · M2 programme</div>
+              </div>
+            </section>
+
             <section id="results">
               <h2 className={styles.head}>
                 <span className={styles.no}>5</span> Experience Pipeline
@@ -334,6 +371,8 @@ function App() {
                 <dd>SLURM HPC · Docker · Apptainer · Snakemake</dd>
                 <dt>Viz</dt>
                 <dd>R Shiny · D3 · Plotly</dd>
+                <dt>Spoken</dt>
+                <dd>English · Telugu · Hindi · French · German · Tamil</dd>
               </dl>
               <div className={styles.tags} aria-hidden="true">
                 <span className={styles.tag}>interpretable-AI</span>
