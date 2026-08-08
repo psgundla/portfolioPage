@@ -7,6 +7,7 @@ import Results from './components/Results';
 import Contact from './components/Contact';
 import Figure1 from './components/Figure1';
 import Figure2 from './components/Figure2';
+import Figure3 from './components/Figure3';
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -281,6 +282,7 @@ function App() {
               <h2 className={styles.head}>
                 <span className={styles.no}>7</span> Methods &amp; Materials
               </h2>
+              <Figure3 />
               <dl className={styles.kv}>
                 <dt>Vision / ML</dt>
                 <dd>PyTorch · TensorFlow · Vision Transformers · foundation models · MIL · scikit-learn</dd>
