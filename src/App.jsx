@@ -5,6 +5,7 @@ import Abstract from './components/Abstract';
 import Discussion from './components/Discussion';
 import Results from './components/Results';
 import Contact from './components/Contact';
+import Figure1 from './components/Figure1';
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -111,6 +112,7 @@ function App() {
               <h2 className={styles.head}>
                 <span className={styles.no}>2</span> Approach &amp; Contributions
               </h2>
+              <Figure1 />
               <p className={styles.small}>
                 Patches → features → attention → explainability. The contribution is not a single model but a <i>reproducible</i>{' '}
                 one: weakly-supervised MIL that needs only slide-level labels, attention heatmaps that a pathologist can audit,
