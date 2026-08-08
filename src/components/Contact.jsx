@@ -15,11 +15,11 @@ export default function Contact() {
 
           <div className={styles.frow}>
             <span>✉ <a href="mailto:contact@psgundla.com">contact@psgundla.com</a></span>
-            <span>🔗 <a href="https://linkedin.com/in/psgundla" target="_blank" rel="noopener">LinkedIn</a></span>
-            <span>📚 <a href="https://scholar.google.com/citations?user=pranav-swaroop-gundla" target="_blank" rel="noopener">Google Scholar</a></span>
+            <span>🔗 <a href="https://linkedin.com/in/pranavswaroopgundla/" target="_blank" rel="noopener">LinkedIn</a></span>
+            <span>📚 <a href="https://scholar.google.com/citations?user=UzlYsbgAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a></span>
             <span>🔬 <a href="https://researchgate.net/profile/Pranav-Swaroop-Gundla" target="_blank" rel="noopener">ResearchGate</a></span>
             <span>💻 <a href="https://github.com/psgundla" target="_blank" rel="noopener">GitHub</a></span>
-            <span>𝕏 <a href="https://x.com/psgundla" target="_blank" rel="noopener">X (Twitter)</a></span>
+            <span>𝕏 <a href="https://x.com/im_pranavgundla" target="_blank" rel="noopener">X (Twitter)</a></span>
           </div>
 
           <p style={{ maxWidth: 'none', marginTop: '16px', fontSize: '12px', color: 'var(--ink-mute)' }}>

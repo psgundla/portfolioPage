@@ -45,7 +45,9 @@ export default function Masthead() {
           <p className={styles.cardHead}>Correspondence &amp; Links</p>
           <ul>
             <li>✉ <a href="mailto:contact@psgundla.com">contact@psgundla.com</a></li>
-            <li>📚 <a href="https://scholar.google.com/scholar?q=%22Pranav+Swaroop+Gundla%22" target="_blank" rel="noopener">Google Scholar</a></li>
+            <li>📚 <a href="https://scholar.google.com/citations?user=UzlYsbgAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a></li>
+            <li>🔗 <a href="https://linkedin.com/in/pranavswaroopgundla/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li>𝕏 <a href="https://x.com/im_pranavgundla" target="_blank" rel="noopener">X (Twitter)</a></li>
             <li>💻 <a href="https://github.com/psgundla" target="_blank" rel="noopener">GitHub</a></li>
             <li>📄 <a href="/CV-Pranav-Swaroop-Gundla.pdf" target="_blank" rel="noopener">Download CV (PDF)</a></li>
           </ul>
