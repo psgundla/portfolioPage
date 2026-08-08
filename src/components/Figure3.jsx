@@ -14,8 +14,8 @@ export default function Figure3() {
 
   return (
     <figure style={{ margin: '0 0 18px' }}>
-      <div style={{ border: '1px solid var(--rule)', borderRadius: '4px', background: 'var(--paper)', padding: '20px', aspectRatio: '16 / 9', minHeight: '200px', position: 'relative', overflow: 'hidden' }}>
-        <svg viewBox="0 0 900 340" style={{ width: '100%', height: '100%' }}>
+      <div style={{ border: '1px solid var(--rule)', borderRadius: '4px', background: 'var(--paper)', padding: '20px', minHeight: '320px', position: 'relative', overflow: 'hidden' }}>
+        <svg viewBox="0 0 1000 380" style={{ width: '100%', height: '100%' }}>
           {/* LEFT SIDE: Skill bars */}
           <text x="30" y="25" fontSize="12" fontWeight="600" fill="var(--ink)">
             Technical Proficiency
