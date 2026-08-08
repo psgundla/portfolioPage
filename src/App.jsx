@@ -272,9 +272,17 @@ function App() {
           </div>
         </div>
 
-        <Discussion />
-        <Results />
+        {/* DISCUSSION & RESULTS in 2-column layout */}
+        <div className={styles.cols} style={{ gridColumn: '1 / -1' }}>
+          <div className={styles.col}>
+            <Discussion />
+          </div>
+          <div className={styles.col}>
+            <Results />
+          </div>
+        </div>
 
+        {/* REFERENCES full width */}
         <section id="references" className={styles.wrap} style={{ padding: 0 }}>
           <h2 className={styles.head}>
             <span className={styles.no}>7</span> References — Selected Publications
