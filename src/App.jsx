@@ -3,7 +3,6 @@ import styles from './styles/App.module.css';
 import Masthead from './components/Masthead';
 import Abstract from './components/Abstract';
 import Discussion from './components/Discussion';
-import Results from './components/Results';
 import Contact from './components/Contact';
 import Logo from './components/Logo';
 import Figure1 from './components/Figure1';
@@ -251,6 +250,37 @@ function App() {
               </div>
             </section>
 
+            <section id="talks">
+              <h2 className={styles.head}>
+                <span className={styles.no}>T</span> Talks &amp; Posters
+              </h2>
+
+              <div className={styles.entry}>
+                <div className={styles.row}>
+                  <h3>Genetic subtype prediction in diffuse gliomas (poster, FPN 278P)</h3>
+                  <span className={styles.when}>2025</span>
+                </div>
+                <div className={styles.org}>1st ESMO AI Congress · ESMO Merit Award</div>
+                <p>Foundation models and attention-based MIL decoding molecular subtype from H&amp;E whole-slide images.</p>
+              </div>
+
+              <div className={styles.entry}>
+                <div className={styles.row}>
+                  <h3>Hackathon presentation — 1st place</h3>
+                  <span className={styles.when}>2020</span>
+                </div>
+                <div className={styles.org}>Congrès National des Pharmaciens, Bordeaux</div>
+              </div>
+
+              <div className={styles.entry}>
+                <div className={styles.row}>
+                  <h3>Lab journal clubs &amp; internal workshops</h3>
+                  <span className={styles.when}>2023 — present</span>
+                </div>
+                <div className={styles.org}>Kocakavuk Lab, IKIM · recurring</div>
+              </div>
+            </section>
+
             <section id="results">
               <h2 className={styles.head}>
                 <span className={styles.no}>5</span> Experience Pipeline
@@ -315,10 +345,9 @@ function App() {
           </div>
         </div>
 
-        {/* DISCUSSION & RESULTS — balanced multi-column flow (fills evenly) */}
+        {/* DISCUSSION & RESULTS — single merged storyline, balanced multi-column flow */}
         <div className={styles.flow}>
           <Discussion />
-          <Results />
         </div>
 
         {/* REFERENCES full width */}
