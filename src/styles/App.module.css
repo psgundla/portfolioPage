@@ -324,6 +324,43 @@ a:focus-visible, button:focus-visible {
   background: color-mix(in srgb, var(--tag) 40%, transparent);
 }
 
+.mastProfile {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 0 0 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 20%;
+  border: 2px solid var(--link);
+  background: var(--ink);
+  flex-shrink: 0;
+}
+
+.avatarName {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.avatarRole {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink-mute);
+  margin: 4px 0 0;
+}
+
 .mastCard .cardHead {
   font-family: var(--mono);
   font-size: 10px;

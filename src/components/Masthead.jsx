@@ -27,6 +27,21 @@ export default function Masthead() {
         </div>
 
         <aside className={styles.mastCard}>
+          <div className={styles.mastProfile}>
+            <img
+              className={styles.avatar}
+              src="/MyAvatar.png"
+              width="64"
+              height="64"
+              alt="Portrait of Pranav Swaroop Gundla"
+              loading="lazy"
+            />
+            <div>
+              <p className={styles.avatarName}>Pranav Swaroop Gundla</p>
+              <p className={styles.avatarRole}>PhD Researcher · AI in Medicine</p>
+            </div>
+          </div>
+
           <p className={styles.cardHead}>Correspondence &amp; Links</p>
           <ul>
             <li>✉ <a href="mailto:contact@psgundla.com">contact@psgundla.com</a></li>
