@@ -378,6 +378,10 @@ section {
 p {
   margin: 0 0 14px;
   max-width: var(--measure);
+  text-align: justify;
+  text-justify: auto;
+  hyphens: auto;
+  hyphenate-character: "-";
 }
 
 .small {
