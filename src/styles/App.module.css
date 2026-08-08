@@ -202,6 +202,32 @@ a:focus-visible, button:focus-visible {
   letter-spacing: 0.06em;
 }
 
+/* Monogram logo */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.logo svg {
+  display: block;
+  border-radius: 7px;
+}
+
+.logoWord {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.barLeft {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
 .bar .id {
   color: var(--ink-mute);
   text-transform: uppercase;

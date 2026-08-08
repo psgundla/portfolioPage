@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" width="320" height="72" role="img" aria-label="Pranav Swaroop Gundla — psgundla">
+  <style>
+    .bg   { fill: #1A1A18; }
+    .fg   { fill: #FBFAF7; }
+    .ac   { fill: #E0A183; }
+    .word { fill: #1A1A18; }
+    .sub  { fill: #7C7C74; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #ECE9E0; } .fg { fill: #14140F; } .ac { fill: #7A2E1E; }
+      .word { fill: #ECE9E0; } .sub { fill: #82806F; }
+    }
+  </style>
+  <rect class="bg" x="6" y="6" width="60" height="60" rx="13" />
+  <text x="36" y="47" text-anchor="middle"
+        font-family="Newsreader, Georgia, 'Times New Roman', serif"
+        font-size="31" font-weight="600" letter-spacing="-1.5">
+    <tspan class="fg">P</tspan><tspan class="ac">S</tspan><tspan class="fg">G</tspan>
+  </text>
+  <text class="word" x="86" y="38"
+        font-family="Newsreader, Georgia, serif" font-size="27" font-weight="500" letter-spacing="-0.3">psgundla</text>
+  <text class="sub" x="87" y="56"
+        font-family="'JetBrains Mono', ui-monospace, Menlo, monospace" font-size="11" letter-spacing="1.5">AI · PATHOLOGY · VISION</text>
+</svg>

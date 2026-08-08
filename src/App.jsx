@@ -5,6 +5,7 @@ import Abstract from './components/Abstract';
 import Discussion from './components/Discussion';
 import Results from './components/Results';
 import Contact from './components/Contact';
+import Logo from './components/Logo';
 import Figure1 from './components/Figure1';
 import Figure2 from './components/Figure2';
 import Figure3 from './components/Figure3';
@@ -44,8 +45,11 @@ function App() {
       </a>
 
       <div className={styles.bar}>
-        <span className={styles.id}>
-          arXiv:<b>2607.17</b>&nbsp;[cs.CV]&nbsp;·&nbsp;cv.v3
+        <span className={styles.barLeft}>
+          <a href="#main" aria-label="Home — PSG"><Logo size={28} /></a>
+          <span className={styles.id}>
+            arXiv:<b>2607.17</b>&nbsp;[cs.CV]&nbsp;·&nbsp;cv.v3
+          </span>
         </span>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <button
