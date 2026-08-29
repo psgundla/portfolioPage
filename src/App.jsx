@@ -194,7 +194,7 @@ function App() {
         <section className="hero" aria-labelledby="hero-title">
           <div className="hero-copy">
             <p className="role">PhD researcher · AI in medicine · Essen</p>
-            <h1 id="hero-title"><span>I teach machines to</span><span>read cancer from tissue.</span></h1>
+            <h1 id="hero-title"><span>I teach machines to</span>{' '}<span>read cancer from tissue.</span></h1>
             <p className="hero-summary">Computational pathology, spatial biology, and interpretable AI.</p>
             <div className="hero-actions">
               <a className="button button--primary" href="#work">View work</a>
@@ -203,8 +203,8 @@ function App() {
           </div>
 
           <figure className="hero-media">
-            <img src={asset('hero_histology.png')} alt="Monochrome histology tissue section" />
-            <figcaption>H&E tissue · morphology as signal</figcaption>
+            <img src={asset('hero_histology.png')} alt="Monochrome illustration of a histology tissue section" />
+            <figcaption>Illustrative interface · not clinical data</figcaption>
           </figure>
         </section>
 
