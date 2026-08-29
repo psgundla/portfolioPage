@@ -547,6 +547,7 @@ main {
 }
 
 .life-item {
+  display: block;
   min-width: 0;
   margin: 0;
 }
@@ -556,6 +557,7 @@ main {
   overflow: hidden;
   border: 1px solid var(--line);
   background: var(--surface);
+  transition: border-color 240ms ease;
 }
 
 .life-item img {
@@ -571,11 +573,43 @@ main {
   transform: scale(1.05);
 }
 
-.life-item figcaption {
+.life-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
   padding: 14px 2px 0;
   color: var(--muted);
   font-size: 0.73rem;
   text-align: center;
+}
+
+.life-item--link:hover .life-image-wrap {
+  border-color: var(--accent);
+}
+
+.life-link-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.life-link-label svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.life-item--link:hover .life-link-label svg {
+  transform: translateX(3px);
 }
 
 .contact {
@@ -889,7 +923,7 @@ main {
     scroll-snap-align: start;
   }
 
-  .life-item figcaption {
+  .life-caption {
     text-align: left;
   }
 

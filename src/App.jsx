@@ -35,7 +35,7 @@ const projects = [
 const interests = [
   ['life_travel.png', 'Travel', 'Mountain lake landscape'],
   ['life_photo.png', 'Photography', 'Camera used for documentary photography'],
-  ['life_music.png', 'Music', 'Headphones for focused listening'],
+  ['life_music.png', 'Music', 'Headphones for focused listening', '/bunker/'],
   ['life_reading.png', 'Reading', 'Books stacked near a window'],
   ['life_running.png', 'Running', 'Forest path used for running'],
   ['life_open.png', 'Open source', 'Code on a laptop screen'],
@@ -261,15 +261,27 @@ function App() {
             <p>Travel, images, sound, books, movement, and useful code.</p>
           </div>
 
-          <div className="life-gallery" role="list">
-            {interests.map(([image, title, alt], index) => (
-              <figure className="life-item reveal" role="listitem" key={title} style={{ '--item-index': index }}>
+          <div className="life-gallery">
+            {interests.map(([image, title, alt, href], index) => {
+              const Card = href ? 'a' : 'figure';
+              return (
+              <Card
+                className={`life-item reveal${href ? ' life-item--link' : ''}`}
+                key={title}
+                style={{ '--item-index': index }}
+                href={href}
+                aria-label={href ? 'Open BUNKER techno generator' : undefined}
+              >
                 <div className="life-image-wrap">
                   <img className="motion-image" src={asset(image)} alt={alt} />
                 </div>
-                <figcaption>{title}</figcaption>
-              </figure>
-            ))}
+                <span className="life-caption">
+                  <span>{title}</span>
+                  {href && <span className="life-link-label">Bunker <Arrow /></span>}
+                </span>
+              </Card>
+              );
+            })}
           </div>
         </section>
 
