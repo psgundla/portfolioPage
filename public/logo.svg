@@ -2,11 +2,11 @@
   <style>
     .bg   { fill: #1A1A18; }
     .fg   { fill: #FBFAF7; }
-    .ac   { fill: #E0A183; }
+    .ac   { fill: #762633; }
     .word { fill: #1A1A18; }
     .sub  { fill: #7C7C74; }
     @media (prefers-color-scheme: dark) {
-      .bg { fill: #ECE9E0; } .fg { fill: #14140F; } .ac { fill: #7A2E1E; }
+      .bg { fill: #ECE9E0; } .fg { fill: #14140F; } .ac { fill: #D18B95; }
       .word { fill: #ECE9E0; } .sub { fill: #82806F; }
     }
   </style>

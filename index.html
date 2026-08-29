@@ -4,12 +4,34 @@
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#1A1A18" />
-    <title>Pranav Swaroop Gundla — Curriculum Vitæ (preprint)</title>
-    <meta name="description" content="Applied AI Scientist in computational pathology. CV rendered as an academic preprint." />
+    <meta name="theme-color" content="#f7f6f2" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Pranav Swaroop Gundla — AI for Cancer Research</title>
+    <meta name="description" content="Pranav Swaroop Gundla builds interpretable AI for computational pathology, spatial biology, and glioma research." />
+    <meta property="og:title" content="Pranav Swaroop Gundla — AI for Cancer Research" />
+    <meta property="og:description" content="Computational pathology, spatial biology, and interpretable AI." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://psgundla.com/" />
+    <meta property="og:image" content="https://psgundla.com/portfolio/hero_histology.png" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('portfolio-theme');
+          const theme = saved === 'light' || saved === 'dark'
+            ? saved
+            : matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+          document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#11100f' : '#f7f6f2';
+        } catch {
+          document.documentElement.dataset.theme = 'light';
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

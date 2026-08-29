@@ -2,11 +2,11 @@
   <style>
     .bg { fill: #1A1A18; }
     .fg { fill: #FBFAF7; }
-    .ac { fill: #E0A183; }
+    .ac { fill: #D18B95; }
     @media (prefers-color-scheme: light) {
       .bg { fill: #1A1A18; }
       .fg { fill: #FBFAF7; }
-      .ac { fill: #E0A183; }
+      .ac { fill: #D18B95; }
     }
   </style>
   <rect class="bg" x="2" y="2" width="60" height="60" rx="13" />

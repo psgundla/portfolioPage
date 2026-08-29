@@ -1,438 +1,303 @@
-import { useState, useEffect } from 'react';
-import styles from './styles/App.module.css';
-import Masthead from './components/Masthead';
-import Abstract from './components/Abstract';
-import Discussion from './components/Discussion';
-import Contact from './components/Contact';
-import Logo from './components/Logo';
-import Figure1 from './components/Figure1';
-import Figure2 from './components/Figure2';
-import Figure3 from './components/Figure3';
+import { useEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import './styles/Portfolio.css';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+
+const asset = (name) => `/portfolio/${name}`;
+
+const projects = [
+  {
+    title: 'Glioma AI',
+    description: 'Predicting molecular subtype from H&E whole-slide images.',
+    image: 'project_glioma.png',
+    alt: 'Glioma tissue with an interpretable model attention map',
+    className: 'work-card--feature',
+  },
+  {
+    title: 'Spatial biology',
+    description: 'Connecting morphology with cellular and molecular context.',
+    image: 'project_spatial.png',
+    alt: 'Spatial cell map aligned with tissue morphology',
+    className: 'work-card--compact',
+  },
+  {
+    title: 'Reproducible research',
+    description: 'Pipelines built to move across cohorts and institutions.',
+    image: 'project_registration.png',
+    alt: 'Reproducible computational research workflow',
+    className: 'work-card--compact',
+  },
+];
+
+const interests = [
+  ['life_travel.png', 'Travel', 'Mountain lake landscape'],
+  ['life_photo.png', 'Photography', 'Camera used for documentary photography'],
+  ['life_music.png', 'Music', 'Headphones for focused listening'],
+  ['life_reading.png', 'Reading', 'Books stacked near a window'],
+  ['life_running.png', 'Running', 'Forest path used for running'],
+  ['life_open.png', 'Open source', 'Code on a laptop screen'],
+];
+
+const getInitialTheme = () => {
+  try {
+    const savedTheme = window.localStorage.getItem('portfolio-theme');
+    if (savedTheme === 'light' || savedTheme === 'dark') return savedTheme;
+  } catch {
+    // Storage may be unavailable in privacy modes.
+  }
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+};
+
+function Arrow() {
+  return (
+    <svg viewBox="0 0 20 20" aria-hidden="true">
+      <path d="M4 10h11M11 6l4 4-4 4" />
+    </svg>
+  );
+}
 
 function App() {
-  const [theme, setTheme] = useState(() => {
-    try {
-      return localStorage.getItem('cv-theme') || 'system';
-    } catch {
-      return 'system';
-    }
-  });
-
+  const [theme, setTheme] = useState(getInitialTheme);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pageRef = useRef(null);
 
   useEffect(() => {
-    const root = document.documentElement;
-    if (theme === 'system') {
-      root.removeAttribute('data-theme');
-    } else {
-      root.setAttribute('data-theme', theme);
-    }
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute(
+      'content',
+      theme === 'dark' ? '#11100f' : '#f7f6f2',
+    );
     try {
-      localStorage.setItem('cv-theme', theme);
-    } catch {}
+      window.localStorage.setItem('portfolio-theme', theme);
+    } catch {
+      // Theme remains active for current visit.
+    }
   }, [theme]);
 
-  const toggleTheme = () => {
-    const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    setTheme(isDark ? 'light' : 'dark');
-  };
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+
+    const closeMenu = (event) => {
+      if (event.key === 'Escape') setMenuOpen(false);
+    };
+
+    document.addEventListener('keydown', closeMenu);
+    return () => document.removeEventListener('keydown', closeMenu);
+  }, [menuOpen]);
+
+  useGSAP(() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return undefined;
+
+    const media = gsap.matchMedia();
+
+    gsap.from('.hero-copy > *', {
+      y: 22,
+      autoAlpha: 0,
+      duration: 0.85,
+      stagger: 0.09,
+      ease: 'power3.out',
+    });
+
+    gsap.from('.hero-media', {
+      scale: 0.94,
+      autoAlpha: 0,
+      duration: 1.1,
+      ease: 'power3.out',
+    });
+
+    gsap.utils.toArray('.reveal').forEach((element) => {
+      gsap.from(element, {
+        y: 18,
+        autoAlpha: 0,
+        duration: 0.75,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: element,
+          start: 'top 88%',
+          once: true,
+        },
+      });
+    });
+
+    gsap.utils.toArray('.motion-image').forEach((image) => {
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: image,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.7,
+        },
+      })
+        .fromTo(image, { scale: 0.9, autoAlpha: 0.5 }, { scale: 1, autoAlpha: 1, duration: 0.46, ease: 'none' })
+        .to(image, { autoAlpha: 0.35, duration: 0.54, ease: 'none' });
+    });
+
+    media.add('(min-width: 981px)', () => {
+      ScrollTrigger.create({
+        trigger: '.work-layout',
+        start: 'top 104px',
+        end: 'bottom bottom-=96',
+        pin: '.work-intro',
+        pinSpacing: false,
+      });
+    });
+
+    return () => media.revert();
+  }, { scope: pageRef });
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
-    <>
-      <a className={styles.skip} href="#main">
-        Skip to content
-      </a>
+    <div ref={pageRef} className="site-shell">
+      <a className="skip-link" href="#main">Skip to content</a>
 
-      <div className={styles.bar}>
-        <span className={styles.barLeft}>
-          <a href="#main" aria-label="Home — PSG"><Logo size={28} /></a>
-          <span className={styles.id}>
-            arXiv:<b>2607.17</b>&nbsp;[cs.CV]&nbsp;·&nbsp;cv.v3
-          </span>
-        </span>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+      <header className="site-header">
+        <a className="brand" href="#main" aria-label="Pranav Swaroop Gundla, home" onClick={closeMenu}>
+          <span className="monogram"><span>P</span><span>S</span><span>G</span></span>
+          <span className="brand-name">Pranav Swaroop Gundla</span>
+        </a>
+
+        <nav id="primary-navigation" className={menuOpen ? 'site-nav site-nav--open' : 'site-nav'} aria-label="Primary navigation">
+          <a href="#work" onClick={closeMenu}>Work</a>
+          <a href="#about" onClick={closeMenu}>About</a>
+          <a href="#life" onClick={closeMenu}>Life</a>
+          <a href="#contact" onClick={closeMenu}>Contact</a>
+        </nav>
+
+        <div className="header-actions">
           <button
-            className={styles.hamburgerBtn}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle navigation menu"
+            className="theme-toggle"
+            type="button"
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+            onClick={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))}
           >
-            ☰
+            {theme === 'dark' ? 'Light' : 'Dark'}
           </button>
-          <nav aria-label="Sections" className={styles.navMenu}>
-            <a href="#abstract">Abstract</a>
-            <a href="#intro">Intro</a>
-            <a href="#experience">Experience</a>
-            <a href="#references">Refs</a>
-            <a href="#contact">Contact</a>
-            <button className={styles.theme} onClick={toggleTheme} aria-label="Toggle color theme">
-              ◑ theme
-            </button>
-          </nav>
           <button
-            className={styles.themeMobile}
-            onClick={toggleTheme}
-            aria-label="Toggle color theme"
+            className="menu-toggle"
+            type="button"
+            aria-expanded={menuOpen}
+            aria-controls="primary-navigation"
+            onClick={() => setMenuOpen((current) => !current)}
           >
-            ◑
+            {menuOpen ? 'Close' : 'Menu'}
           </button>
         </div>
-        {menuOpen && (
-          <nav className={styles.mobileMenu}>
-            <a href="#abstract" onClick={() => setMenuOpen(false)}>Abstract</a>
-            <a href="#intro" onClick={() => setMenuOpen(false)}>Intro</a>
-            <a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a>
-            <a href="#references" onClick={() => setMenuOpen(false)}>Refs</a>
-            <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
-          </nav>
-        )}
-      </div>
+      </header>
 
-      <main id="main" className={styles.wrap}>
-        <Masthead />
-
-        <div className={styles.cols}>
-          <Abstract />
-
-          {/* LEFT COLUMN */}
-          <div className={styles.col}>
-            <section id="intro">
-              <h2 className={styles.head}>
-                <span className={styles.no}>1</span> Introduction
-              </h2>
-              <p className={styles.dropcap}>
-                A research career rarely begins where it lands. Mine started with a wide-base bachelor's in mathematics,
-                electronics and computer science — the discipline of reasoning from first principles, and the habit of
-                debugging circuits and code with equal patience. It moved into biology, then into machine learning, then into
-                the specific problem of teaching a model to see what a pathologist sees and infer what a sequencer would report.
-              </p>
-              <p>
-                The thread across every stop has been the same: build interpretable, scalable systems that survive contact with
-                messy real data and cross the boundary between institutions. What began as tutoring and Arduino workshops is now
-                vision transformers on HPCs — but the goal, "to make the world a slightly better place in the slow accumulation
-                of small things," has not moved.
-              </p>
-            </section>
-
-            <section id="methods">
-              <h2 className={styles.head}>
-                <span className={styles.no}>2</span> Approach &amp; Contributions
-              </h2>
-              <Figure1 />
-              <p className={styles.small}>
-                Patches → features → attention → explainability. The contribution is not a single model but a <i>reproducible</i>{' '}
-                one: weakly-supervised MIL that needs only slide-level labels, attention heatmaps that a pathologist can audit,
-                and containerised pipelines (Docker / Apptainer, Snakemake) that move from one cohort — and one institution — to
-                the next without silent failure.
-              </p>
-            </section>
-
-            <section id="education">
-              <h2 className={styles.head}>
-                <span className={styles.no}>3</span> Education
-              </h2>
-
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>PhD — AI in Medicine</h3>
-                  <span className={styles.when}>2023 — present</span>
-                </div>
-                <div className={styles.org}>
-                  Kocakavuk Lab, IKIM · Westdeutsches Tumorzentrum, University Hospital Essen · Univ. of Duisburg-Essen, DE
-                </div>
-                <p>
-                  Genotype-to-phenotype in adult diffuse gliomas (<i>IDH</i>, 1p/19q, <i>CDKN2A</i>). Weakly-supervised MIL,
-                  vision transformers, attention heatmaps, cross-cohort validation on HPC. Part of the CANTAR research network.
-                </p>
-              </div>
-
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>MSc — Healthy Living Technologies</h3>
-                  <span className={styles.when}>2019 — 2020</span>
-                </div>
-                <div className={styles.org}>Université Grenoble Alpes, FR</div>
-                <p>
-                  M2 thesis: <i>Initiation of a lung adenocarcinoma cartography around TP53 activity</i> (IAB, Dr. Cyril
-                  Boyault). IDEX &amp; UGA Foundation scholarship. 1st place, Hackathon — Congrès National des Pharmaciens,
-                  Bordeaux.
-                </p>
-              </div>
-
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>MSc — Bioinformatics</h3>
-                  <span className={styles.when}>2018 — 2019</span>
-                </div>
-                <div className={styles.org}>Manipal Academy of Higher Education, IN</div>
-                <p>NGS, sequence alignments, phylogenetics, functional genomics — bioinformatics proper, against the sound of the Arabian Sea.</p>
-              </div>
-
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>BSc — Mathematics, Electronics &amp; CS</h3>
-                  <span className={styles.when}>2015 — 2018</span>
-                </div>
-                <div className={styles.org}>Osmania University · Hyderabad, IN</div>
-                <p>First principles across three disciplines. Tutored matriculation students; ran a two-week Arduino / IoT workshop for ~40 participants.</p>
-              </div>
-            </section>
-
-            <section id="training">
-              <h2 className={styles.head}>
-                <span className={styles.no}>C</span> Training &amp; Certifications
-              </h2>
-
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>Precision Oncology — Summer School</h3>
-                  <span className={styles.when}>2020</span>
-                </div>
-                <div className={styles.org}>ESI Archamps, FR</div>
-              </div>
-
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>Biohealth Computing — Summer School</h3>
-                  <span className={styles.when}>2019</span>
-                </div>
-                <div className={styles.org}>ESI Archamps, FR</div>
-              </div>
-
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>Certifications</h3>
-                  <span className={styles.when}>online</span>
-                </div>
-                <div className={styles.org}>Coursera · JuliaAcademy</div>
-                <ul>
-                  <li>Algorithms for DNA Sequencing — Johns Hopkins</li>
-                  <li>Supervised Machine Learning: Regression &amp; Classification — DeepLearning.AI / Stanford</li>
-                  <li>Command Line Tools for Genomic Data Science — Johns Hopkins</li>
-                  <li>Python for Data Science &amp; AI — IBM</li>
-                  <li>Introduction to Julia (for Programmers) — JuliaAcademy</li>
-                </ul>
-              </div>
-            </section>
+      <main id="main">
+        <section className="hero" aria-labelledby="hero-title">
+          <div className="hero-copy">
+            <p className="role">PhD researcher · AI in medicine · Essen</p>
+            <h1 id="hero-title"><span>I teach machines to</span><span>read cancer from tissue.</span></h1>
+            <p className="hero-summary">Computational pathology, spatial biology, and interpretable AI.</p>
+            <div className="hero-actions">
+              <a className="button button--primary" href="#work">View work</a>
+              <a className="button button--secondary" href="/CV-Pranav-Swaroop-Gundla.pdf" target="_blank" rel="noreferrer">Download CV</a>
+            </div>
           </div>
 
-          {/* RIGHT COLUMN */}
-          <div className={styles.col}>
-            <section id="experience">
-              <h2 className={styles.head}>
-                <span className={styles.no}>4</span> Research &amp; Industry Experience
-              </h2>
+          <figure className="hero-media">
+            <img src={asset('hero_histology.png')} alt="Monochrome histology tissue section" />
+            <figcaption>H&E tissue · morphology as signal</figcaption>
+          </figure>
+        </section>
 
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>Bioinformatics Analyst</h3>
-                  <span className={styles.when}>USA</span>
-                </div>
-                <div className={styles.org}>Mbiomics LLC</div>
-                <p>Biomarker identification in esophageal squamous-cell carcinoma (ESCC). Two peer-reviewed publications.</p>
-              </div>
+        <section id="work" className="chapter work-section" aria-labelledby="work-title">
+          <div className="work-layout">
+            <div className="work-intro reveal">
+              <p className="section-kicker">Selected work</p>
+              <h2 id="work-title">Tissue to evidence.</h2>
+            </div>
 
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>Associate Bioinformatician</h3>
-                  <span className={styles.when}>Paris, FR</span>
-                </div>
-                <div className={styles.org}>Plantik Biosciences</div>
-                <p>Cloud architecture for plant breeding — GCP / AWS pipelines in Python &amp; R.</p>
-              </div>
-
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>Selected results</h3>
-                  <span className={styles.when}>—</span>
-                </div>
-                <div className={styles.org}>Highlights across the work</div>
-                <ul>
-                  <li>ViT-based model for genetic-subtype prediction in diffuse gliomas (ESMO AI, 278P).</li>
-                  <li>Divergent molecular evolution in IDH-mutant gliomas (medRxiv, 2025).</li>
-                  <li>Population-specific transcriptomes in ESCC (Infectious Agents &amp; Cancer, 2023).</li>
-                  <li>Downregulation of Desmoglein 1 in ESCC (Cancer Biomarkers, 2023).</li>
-                </ul>
-              </div>
-            </section>
-
-            <section id="talks">
-              <h2 className={styles.head}>
-                <span className={styles.no}>T</span> Talks &amp; Posters
-              </h2>
-
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>Genetic subtype prediction in diffuse gliomas (poster, FPN 278P)</h3>
-                  <span className={styles.when}>2025</span>
-                </div>
-                <div className={styles.org}>1st ESMO AI Congress · ESMO Merit Award</div>
-                <p>Foundation models and attention-based MIL decoding molecular subtype from H&amp;E whole-slide images.</p>
-              </div>
-
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>Hackathon presentation — 1st place</h3>
-                  <span className={styles.when}>2020</span>
-                </div>
-                <div className={styles.org}>Congrès National des Pharmaciens, Bordeaux</div>
-              </div>
-
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>Lab journal clubs &amp; internal workshops</h3>
-                  <span className={styles.when}>2023 — present</span>
-                </div>
-                <div className={styles.org}>Kocakavuk Lab, IKIM · recurring</div>
-              </div>
-            </section>
-
-            <section id="awards">
-              <h2 className={styles.head}>
-                <span className={styles.no}>A</span> Awards &amp; Honours
-              </h2>
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>ESMO Merit Award</h3>
-                  <span className={styles.when}>2025</span>
-                </div>
-                <div className={styles.org}>1st ESMO AI Congress (ESMO AI 2025)</div>
-                <p>
-                  For the poster <i>Genetic subtype prediction in diffuse gliomas using a vision-transformer-based model</i> (FPN
-                  278P) — foundation models and attention-based MIL decoding molecular subtype from H&amp;E whole-slide images.
-                  Mentors: Emre Kocakavuk, Christian Reinhardt.
-                </p>
-              </div>
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>1st place — Hackathon</h3>
-                  <span className={styles.when}>2020</span>
-                </div>
-                <div className={styles.org}>Congrès National des Pharmaciens, Bordeaux</div>
-              </div>
-              <div className={styles.entry}>
-                <div className={styles.row}>
-                  <h3>IDEX &amp; UGA Foundation Scholarship</h3>
-                  <span className={styles.when}>2019</span>
-                </div>
-                <div className={styles.org}>Université Grenoble Alpes · M2 programme</div>
-              </div>
-            </section>
-
-            <section id="results">
-              <h2 className={styles.head}>
-                <span className={styles.no}>5</span> Experience Pipeline
-              </h2>
-              <Figure2 />
-            </section>
-
-            <section id="metrics">
-              <h2 className={styles.head}>
-                <span className={styles.no}>6</span> By the Numbers
-              </h2>
-              <div className={styles.metrics} role="group" aria-label="Key metrics">
-                <div className={styles.m}>
-                  <div className={styles.v}>5K+</div>
-                  <div className={styles.k}>WSIs trained</div>
-                </div>
-                <div className={styles.m}>
-                  <div className={styles.v}>5</div>
-                  <div className={styles.k}>Publications</div>
-                </div>
-                <div className={styles.m}>
-                  <div className={styles.v}>4</div>
-                  <div className={styles.k}>Countries</div>
-                </div>
-                <div className={styles.m}>
-                  <div className={styles.v}>8+</div>
-                  <div className={styles.k}>Years coding</div>
-                </div>
-              </div>
-            </section>
-
-            <section id="skills">
-              <h2 className={styles.head}>
-                <span className={styles.no}>7</span> Methods &amp; Materials
-              </h2>
-              <Figure3 />
-              <dl className={styles.kv}>
-                <dt>Vision / ML</dt>
-                <dd>PyTorch · TensorFlow · Vision Transformers · foundation models · MIL · scikit-learn</dd>
-                <dt>OMICS</dt>
-                <dd>multimodal OMICS · cancer ecotypes · transcriptomics</dd>
-                <dt>Languages</dt>
-                <dd>Python · R · Julia · Bash · JS / TS</dd>
-                <dt>Imaging</dt>
-                <dd>OpenSlide · QuPath · H&amp;E patching · WSI</dd>
-                <dt>Data</dt>
-                <dd>NumPy · pandas · NGS · multi-omics</dd>
-                <dt>Cloud</dt>
-                <dd>GCP · AWS · Azure</dd>
-                <dt>Infra</dt>
-                <dd>SLURM HPC · Docker · Apptainer · Snakemake</dd>
-                <dt>Viz</dt>
-                <dd>R Shiny · D3 · Plotly</dd>
-                <dt>Spoken</dt>
-                <dd>English · Telugu · Hindi · French · German · Tamil</dd>
-              </dl>
-              <div className={styles.tags} aria-hidden="true">
-                <span className={styles.tag}>interpretable-AI</span>
-                <span className={styles.tag}>reproducibility</span>
-                <span className={styles.tag}>cross-cohort</span>
-                <span className={styles.tag}>weakly-supervised</span>
-              </div>
-            </section>
+            <div className="work-grid">
+              {projects.map((project) => (
+                <article className={`work-card ${project.className} reveal`} key={project.title}>
+                  <div className="work-image-wrap">
+                    <img className="motion-image" src={asset(project.image)} alt={project.alt} />
+                  </div>
+                  <div className="work-card-copy">
+                    <h3>{project.title}</h3>
+                    <p>{project.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* DISCUSSION & RESULTS — single merged storyline, balanced multi-column flow */}
-        <div className={styles.flow}>
-          <Discussion />
-        </div>
+          <dl className="proof reveal" aria-label="Research highlights">
+            <div><dt>5K+</dt><dd>whole-slide images</dd></div>
+            <div><dt>5</dt><dd>publications</dd></div>
+            <div><dt>ESMO</dt><dd>Merit Award</dd></div>
+          </dl>
+        </section>
 
-        {/* REFERENCES full width */}
-        <section id="references" className={styles.wrap} style={{ padding: 0 }}>
-          <h2 className={styles.head}>
-            <span className={styles.no}>7</span> References — Selected Publications
-          </h2>
-          <div className={styles.refs}>
-            <div className={styles.ref}>
-              <div className={styles.cite}>
-                <b>Gundla, P.S.</b> et al. Genetic subtype prediction in diffuse gliomas using a vision-transformer-based model.{' '}
-                <span className={styles.venue}>1st ESMO AI Congress</span>, poster FPN 278P — <b>ESMO Merit Award</b>,{' '}
-                <span className={styles.yr}>2025</span>.
-              </div>
-            </div>
-            <div className={styles.ref}>
-              <div className={styles.cite}>
-                Tumor-initiating genetics and therapy drive divergent molecular evolution in IDH-mutant gliomas.{' '}
-                <span className={styles.venue}>medRxiv</span> preprint, <span className={styles.yr}>2025</span>.
-              </div>
-            </div>
-            <div className={styles.ref}>
-              <div className={styles.cite}>
-                Real-World Data and Digital Oncology — ESMO AI Conference Abstract.{' '}
-                <span className={styles.venue}>ESMO RWD</span>, DOI 10.1016/j.esmorw.2025.100474,{' '}
-                <span className={styles.yr}>2025</span>.
-              </div>
-            </div>
-            <div className={styles.ref}>
-              <div className={styles.cite}>
-                Global comparative transcriptomes uncover novel and population-specific gene expression in ESCC.{' '}
-                <span className={styles.venue}>Infectious Agents &amp; Cancer</span>, <span className={styles.yr}>2023</span>.
-              </div>
-            </div>
-            <div className={styles.ref}>
-              <div className={styles.cite}>
-                A comprehensive analysis of mRNA expression profiles of ESCC reveals downregulation of Desmoglein 1.{' '}
-                <span className={styles.venue}>Cancer Biomarkers</span>, <span className={styles.yr}>2023</span>.
-              </div>
+        <section id="about" className="chapter about" aria-labelledby="about-title">
+          <p className="section-kicker">About</p>
+          <div className="about-grid reveal">
+            <h2 id="about-title">
+              From mathematics to{' '}
+              <span className="inline-sample" role="img" aria-label="histology sample" />{' '}
+              bioinformatics, cancer biology, and AI in medicine.
+            </h2>
+            <div className="about-details">
+              <p>I build models that connect tissue morphology with molecular and spatial context.</p>
+              <p className="methods">Python · PyTorch · R · Docker · HPC · Snakemake</p>
             </div>
           </div>
         </section>
 
-        <Contact />
+        <section id="life" className="chapter life" aria-labelledby="life-title">
+          <div className="life-heading reveal">
+            <div>
+              <p className="section-kicker">Outside research</p>
+              <h2 id="life-title">What keeps me curious.</h2>
+            </div>
+            <p>Travel, images, sound, books, movement, and useful code.</p>
+          </div>
+
+          <div className="life-gallery" role="list">
+            {interests.map(([image, title, alt], index) => (
+              <figure className="life-item reveal" role="listitem" key={title} style={{ '--item-index': index }}>
+                <div className="life-image-wrap">
+                  <img className="motion-image" src={asset(image)} alt={alt} />
+                </div>
+                <figcaption>{title}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        <section id="contact" className="chapter contact" aria-labelledby="contact-title">
+          <div className="contact-copy reveal">
+            <p className="section-kicker">Contact</p>
+            <h2 id="contact-title">Interested in careful AI for cancer research?</h2>
+            <a className="contact-email" href="mailto:contact@psgundla.com">
+              contact@psgundla.com
+              <Arrow />
+            </a>
+          </div>
+
+          <nav className="contact-links reveal" aria-label="External profiles">
+            <a href="https://linkedin.com/in/pranavswaroopgundla/" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a>
+            <a href="https://scholar.google.com/citations?user=UzlYsbgAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar <Arrow /></a>
+            <a href="https://github.com/psgundla" target="_blank" rel="noreferrer">GitHub <Arrow /></a>
+            <a href="https://researchgate.net/profile/Pranav-Swaroop-Gundla" target="_blank" rel="noreferrer">ResearchGate <Arrow /></a>
+          </nav>
+        </section>
       </main>
-    </>
+
+      <footer className="site-footer">
+        <span>© 2026 Pranav Swaroop Gundla</span>
+        <span>Computational oncology · Essen</span>
+        <a href="#main">Back to top</a>
+      </footer>
+    </div>
   );
 }
 
